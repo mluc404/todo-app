@@ -1,0 +1,6 @@
+{
+  "tasks": [
+    { "id": "1", "text": "get milk" },
+    { "id": "2", "text": "get eggs" }
+  ]
+}
