@@ -1,9 +1,10 @@
 interface ModalProps {
   modalOpen: boolean;
   setModalOpen: (open: boolean) => void;
+  children: React.ReactNode;
 }
 
-export function Modal({ modalOpen, setModalOpen }: ModalProps) {
+export function Modal({ modalOpen, setModalOpen, children }: ModalProps) {
   if (!modalOpen) return null;
 
   return (
@@ -16,8 +17,7 @@ export function Modal({ modalOpen, setModalOpen }: ModalProps) {
           >
             ✕
           </button>
-          <h3 className="font-bold text-lg">Modal!</h3>
-          <p className="py-4">Press ESC key or click on ✕ button to close</p>
+          {children}
         </div>
       </div>
     </div>

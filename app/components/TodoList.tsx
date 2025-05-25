@@ -7,8 +7,8 @@ interface TodoListProps {
 
 export function TodoList({ tasks }: TodoListProps) {
   return (
-    <div className="container w-[500px] mx-auto px-4 border-2 border-blue-500">
-      <table className="table w-full">
+    <div className="container w-[80%] mx-auto px-4 bg-gray-800">
+      <table className="table w-full text-[1rem]">
         <thead>
           <tr>
             <th>TASKS</th>
