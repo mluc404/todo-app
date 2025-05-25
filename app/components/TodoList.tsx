@@ -1,4 +1,5 @@
 import { TaskInterface } from "@/types/task";
+import { Task } from "./Task";
 
 interface TodoListProps {
   tasks: TaskInterface[];
@@ -6,24 +7,20 @@ interface TodoListProps {
 
 export function TodoList({ tasks }: TodoListProps) {
   return (
-    <div>
+    <div className="container w-[500px] mx-auto px-4 border-2 border-blue-500">
       <table className="table w-full">
         <thead>
           <tr>
-            <th>Tasks</th>
-            <th>Actions</th>
+            <th>TASKS</th>
+            <th>ACTIONS</th>
           </tr>
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <tr key={task.id} className="">
-              <td>{task.text}</td>
-              <td>Blue</td>
-            </tr>
+            <Task key={task.id} task={task} />
           ))}
         </tbody>
       </table>
-      <div></div>
     </div>
   );
 }
