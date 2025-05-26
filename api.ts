@@ -23,13 +23,18 @@ export async function addTodo(todo: TaskInterface): Promise<TaskInterface> {
   return newTodo;
 }
 
-export async function editTodo(todo: TaskInterface): Promise<TaskInterface> {
-  const res = await fetch(`${baseURL}/tasks`, {
+export async function editTodo(
+  todo: TaskInterface,
+  newText: string
+): Promise<TaskInterface> {
+  const res = await fetch(`${baseURL}/tasks/${todo.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(todo),
+    body: JSON.stringify({
+      text: newText,
+    }),
   });
   const editedTodo = await res.json();
   return editedTodo;

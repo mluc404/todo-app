@@ -3,9 +3,10 @@ import { Task } from "./Task";
 
 interface TodoListProps {
   tasks: TaskInterface[];
+  onEdit: (taskId: string, taskUpdatedValue: string) => void;
 }
 
-export function TodoList({ tasks }: TodoListProps) {
+export function TodoList({ tasks, onEdit }: TodoListProps) {
   return (
     <div className="container w-[80%] mx-auto px-4 bg-gray-800">
       <table className="table w-full text-[1rem]">
@@ -17,7 +18,7 @@ export function TodoList({ tasks }: TodoListProps) {
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <Task key={task.id} task={task} />
+            <Task key={task.id} task={task} onEdit={onEdit} />
           ))}
         </tbody>
       </table>

@@ -15,6 +15,13 @@ export function TodoContainer({ initialTasks }: TodoContainerProps) {
   const handleAddTask = (newTodo: TaskInterface) => {
     setTasks((prev) => [...prev, newTodo]);
   };
+  const handleEditTask = (taskId: string, taskUpdatedValue: string) => {
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === taskId ? { id: taskId, text: taskUpdatedValue } : task
+      )
+    );
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center">
@@ -23,7 +30,7 @@ export function TodoContainer({ initialTasks }: TodoContainerProps) {
           <h1>Todo App</h1>
           <AddTask handleAddTask={handleAddTask} />
         </div>
-        <TodoList tasks={tasks} />
+        <TodoList tasks={tasks} onEdit={handleEditTask} />
       </main>
       <footer className="mt-auto py-4 flex gap-6 flex-wrap items-center justify-center"></footer>
     </div>
