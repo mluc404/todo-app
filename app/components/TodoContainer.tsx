@@ -23,6 +23,10 @@ export function TodoContainer({ initialTasks }: TodoContainerProps) {
     );
   };
 
+  const handleDeleteTask = (taskId: string) => {
+    setTasks((prev) => prev.filter((task) => task.id !== taskId));
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center">
       <main className="w-full max-w-4xl px-4 flex flex-col gap-4">
@@ -30,7 +34,11 @@ export function TodoContainer({ initialTasks }: TodoContainerProps) {
           <h1>Todo App</h1>
           <AddTask handleAddTask={handleAddTask} />
         </div>
-        <TodoList tasks={tasks} onEdit={handleEditTask} />
+        <TodoList
+          tasks={tasks}
+          onEdit={handleEditTask}
+          onDelete={handleDeleteTask}
+        />
       </main>
       <footer className="mt-auto py-4 flex gap-6 flex-wrap items-center justify-center"></footer>
     </div>

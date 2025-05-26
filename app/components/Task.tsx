@@ -4,14 +4,15 @@ import { FiEdit } from "react-icons/fi";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { Modal } from "./Modal";
 import { FormEventHandler, useState } from "react";
-import { editTodo } from "@/api";
+import { deleteTodo, editTodo } from "@/api";
 
 interface TaskProps {
   task: TaskInterface;
   onEdit: (taskId: string, taskUpdatedValue: string) => void;
+  onDelete: (taskId: string) => void;
 }
 
-export function Task({ task, onEdit }: TaskProps) {
+export function Task({ task, onEdit, onDelete }: TaskProps) {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [editTaskValue, setEditTaskValue] = useState<string>(task.text);
 
@@ -21,6 +22,11 @@ export function Task({ task, onEdit }: TaskProps) {
     editTodo(task, editTaskValue);
     onEdit(task.id, editTaskValue);
     setModalOpen(false);
+  };
+
+  const handleDeleteTask = () => {
+    deleteTodo(task);
+    onDelete(task.id);
   };
   return (
     <tr key={task.id}>
@@ -49,7 +55,12 @@ export function Task({ task, onEdit }: TaskProps) {
             </div>
           </form>
         </Modal>
-        <FaRegTrashCan cursor="pointer" className="text-red-400" size={20} />
+        <FaRegTrashCan
+          onClick={handleDeleteTask}
+          cursor="pointer"
+          className="text-red-400"
+          size={20}
+        />
       </td>
     </tr>
   );

@@ -39,3 +39,19 @@ export async function editTodo(
   const editedTodo = await res.json();
   return editedTodo;
 }
+
+export async function deleteTodo(
+  todo: TaskInterface
+): Promise<TaskInterface[]> {
+  const res = await fetch(`${baseURL}/tasks/${todo.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  // const editedTodo = await res.json();
+  // return editedTodo;
+
+  const updatedTodoList = await getAllTodos();
+  return updatedTodoList;
+}
