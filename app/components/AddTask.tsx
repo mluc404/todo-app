@@ -1,15 +1,32 @@
 "use client";
 import { FormEventHandler, useState } from "react";
 import { Modal } from "./Modal";
+import { addTodo, getAllTodos } from "@/api";
+import { TaskInterface } from "@/types/task";
+import { useRouter } from "next/navigation";
 
-export function AddTask() {
+interface AddTaskProps {
+  handleAddTask: (newTodo: TaskInterface) => void;
+}
+
+export function AddTask({ handleAddTask }: AddTaskProps) {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [newTaskValue, setNewTaskValue] = useState<string>("");
+  const router = useRouter();
 
-  const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     console.log(newTaskValue);
+
+    const newTodo: TaskInterface = {
+      id: "8",
+      text: newTaskValue,
+    };
+    addTodo(newTodo);
+    handleAddTask(newTodo);
     setNewTaskValue("");
+    setModalOpen(false);
+    // router.refresh();
   };
   return (
     <div>

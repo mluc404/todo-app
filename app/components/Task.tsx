@@ -7,7 +7,7 @@ interface TaskProps {
 export function Task({ task }: TaskProps) {
   return (
     <tr key={task.id}>
-      <td>{task.text}</td>
+      <td className="w-full">{task.text}</td>
       <td>Blue</td>
     </tr>
   );
