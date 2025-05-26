@@ -22,3 +22,15 @@ export async function addTodo(todo: TaskInterface): Promise<TaskInterface> {
   const newTodo = await res.json();
   return newTodo;
 }
+
+export async function editTodo(todo: TaskInterface): Promise<TaskInterface> {
+  const res = await fetch(`${baseURL}/tasks`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(todo),
+  });
+  const editedTodo = await res.json();
+  return editedTodo;
+}

@@ -3,7 +3,7 @@ import { FormEventHandler, useState } from "react";
 import { Modal } from "./Modal";
 import { addTodo, getAllTodos } from "@/api";
 import { TaskInterface } from "@/types/task";
-import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 interface AddTaskProps {
   handleAddTask: (newTodo: TaskInterface) => void;
@@ -12,21 +12,19 @@ interface AddTaskProps {
 export function AddTask({ handleAddTask }: AddTaskProps) {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [newTaskValue, setNewTaskValue] = useState<string>("");
-  const router = useRouter();
 
   const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     console.log(newTaskValue);
 
     const newTodo: TaskInterface = {
-      id: "8",
+      id: uuidv4(),
       text: newTaskValue,
     };
     addTodo(newTodo);
     handleAddTask(newTodo);
     setNewTaskValue("");
     setModalOpen(false);
-    // router.refresh();
   };
   return (
     <div>
