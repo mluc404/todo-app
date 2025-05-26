@@ -1,5 +1,5 @@
-import { TaskInterface } from "./types/task";
-import { supabase } from "./libs/supabase";
+import { TaskInterface } from "@/types/task";
+import { supabase } from "@/libs/supabase";
 
 // const baseURL = "http://localhost:3001";
 

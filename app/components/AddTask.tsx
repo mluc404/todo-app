@@ -1,7 +1,7 @@
 "use client";
 import { FormEventHandler, useState } from "react";
 import { Modal } from "./Modal";
-import { addTodo, getAllTodos } from "@/api";
+import { addTodo } from "@/api";
 import { TaskInterface } from "@/types/task";
 import { v4 as uuidv4 } from "uuid";
 
