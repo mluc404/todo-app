@@ -28,9 +28,19 @@ export function Task({ task, onEdit, onDelete }: TaskProps) {
     deleteTodo(task);
     onDelete(task.id);
   };
+
+  const [isFinished, setIsFinished] = useState<boolean>(false);
+
   return (
     <tr key={task.id}>
-      <td className="w-full">{task.text}</td>
+      <td
+        onClick={() => setIsFinished(!isFinished)}
+        className={`w-full cursor-pointer ${
+          isFinished ? "text-decoration-line: line-through" : ""
+        }`}
+      >
+        {task.text}
+      </td>
       <td className="flex gap-5">
         <FiEdit
           onClick={() => setModalOpen(true)}
