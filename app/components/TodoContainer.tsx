@@ -3,7 +3,7 @@
 import { TaskInterface } from "@/types/task";
 import { AddTask } from "./AddTask";
 import { TodoList } from "./TodoList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface TodoContainerProps {
   initialTasks: TaskInterface[];
@@ -11,6 +11,10 @@ interface TodoContainerProps {
 
 export function TodoContainer({ initialTasks }: TodoContainerProps) {
   const [tasks, setTasks] = useState<TaskInterface[]>(initialTasks);
+
+  useEffect(() => {
+    console.log("TodoContainer received initialTasks:", initialTasks);
+  }, [initialTasks]);
 
   const handleAddTask = (newTodo: TaskInterface) => {
     setTasks((prev) => [...prev, newTodo]);
